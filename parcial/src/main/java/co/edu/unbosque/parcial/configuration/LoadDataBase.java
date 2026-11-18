@@ -18,8 +18,8 @@ public class LoadDataBase {
 	private static final Logger log = LoggerFactory.getLogger(LoadDataBase.class);
 
 	
-	private static final String ADMIN_USER = "brandon";
-	private static final String ADMIN_PASS = "cainegro";
+	private static final String ADMIN_USER = "sigma";
+	private static final String ADMIN_PASS = "simga123";
 
 	@Bean
 	CommandLineRunner initDatabase(UserRepository userRepo, PasswordEncoder passwordEncoder) {
