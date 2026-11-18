@@ -1,0 +1,38 @@
+<section class="container py-5">
+
+  <h2>Usuarios</h2>
+  <p>Total registrados: {{ total }} | Tu rol: {{ rol }}</p>
+
+  <p>{{ mensaje }}</p>
+
+  <h4>Crear usuario (solo ADMIN)</h4>
+  <form (ngSubmit)="crear()">
+    <input type="text" name="nuevoUsername" [(ngModel)]="nuevoUsername" placeholder="Nuevo usuario">
+    <input type="password" name="nuevoPassword" [(ngModel)]="nuevoPassword" placeholder="Contraseña">
+    <select name="nuevoRol" [(ngModel)]="nuevoRol">
+      <option value="USER">USER</option>
+      <option value="ADMIN">ADMIN</option>
+    </select>
+    <button type="submit">Crear</button>
+  </form>
+
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Usuario</th>
+      <th>Rol</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let u of usuarios">
+      <td>{{ u.id }}</td>
+      <td>{{ u.username }}</td>
+      <td>{{ u.role }}</td>
+      <td><button type="button" (click)="eliminar(u)">Eliminar</button></td>
+    </tr>
+    </tbody>
+  </table>
+
+</section>

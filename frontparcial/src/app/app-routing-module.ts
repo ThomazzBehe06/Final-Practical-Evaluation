@@ -5,35 +5,15 @@ import { Principalcomponent } from './components/principalcomponent/principalcom
 import { Noencontradocomponent } from './components/noencontradocomponent/noencontradocomponent';
 import { Nosotroscomponent } from './components/nosotroscomponent/nosotroscomponent';
 import { Logincomponent } from './components/logincomponent/logincomponent';
+import { Usuarioscomponent } from './components/usuarioscomponent/usuarioscomponent';
 
 const routes: Routes = [
-
-  {
-    path: '',
-    redirectTo: 'principal',
-    pathMatch: 'full'
-  },
-
-  {
-    path: 'principal',
-    component: Principalcomponent
-  },
-
-  {
-    path: 'nosotros',
-    component: Nosotroscomponent
-  },
-
-  {
-    path: 'login',
-    component: Logincomponent
-  },
-
-  {
-    path: '**',
-    component: Noencontradocomponent
-  }
-
+  { path: '', redirectTo: 'principal', pathMatch: 'full' },
+  { path: 'principal', component: Principalcomponent },
+  { path: 'nosotros', component: Nosotroscomponent },
+  { path: 'login', component: Logincomponent },
+  { path: 'usuarios', component: Usuarioscomponent },
+  { path: '**', component: Noencontradocomponent }
 ];
 
 @NgModule({

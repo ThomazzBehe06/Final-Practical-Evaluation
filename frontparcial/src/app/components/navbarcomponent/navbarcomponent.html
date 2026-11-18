@@ -1,4 +1,3 @@
-
 <nav class="barra-navegacion">
   <div class="contenedor-navbar">
 
@@ -26,9 +25,25 @@
         </a>
       </li>
 
-      <li>
+      <li *ngIf="logueado">
+        <a routerLink="/usuarios"
+           routerLinkActive="enlace-activo">
+          Usuarios
+        </a>
+      </li>
+
+      <li *ngIf="!logueado">
         <a routerLink="/login">
           Iniciar Sesion
+        </a>
+      </li>
+
+      <li *ngIf="logueado" class="sesion-navbar">
+        <span class="usuario-navbar">
+          {{ usuario }} ({{ rol }})
+        </span>
+        <a class="cerrar-sesion" (click)="cerrarSesion()">
+          Cerrar sesión
         </a>
       </li>
     </ul>

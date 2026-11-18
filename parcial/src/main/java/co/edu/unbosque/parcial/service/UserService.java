@@ -158,7 +158,7 @@ public class UserService implements CRUDOperation<UserDTO> {
         UserDTO dto = new UserDTO();
         dto.setId(entity.getId());
         dto.setUsername(entity.getUsername());
-        dto.setRole(entity.getRole().name());
+        dto.setRole(entity.getRole() == null ? "USER" : entity.getRole().name());
         return dto;
     }
 }

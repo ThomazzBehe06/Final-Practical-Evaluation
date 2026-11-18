@@ -38,11 +38,11 @@
       <form *ngIf="vista === 'login'"
             (ngSubmit)="iniciarSesion()">
 
-        <label>Correo electrónico</label>
-        <input type="email"
-               name="correoLogin"
-               [(ngModel)]="correo"
-               placeholder="Ingresa tu correo"
+        <label>Usuario</label>
+        <input type="text"
+               name="usuarioLogin"
+               [(ngModel)]="usuario"
+               placeholder="Ingresa tu usuario"
                required>
 
         <label>Contraseña</label>
@@ -74,13 +74,6 @@
                name="usuario"
                [(ngModel)]="usuario"
                placeholder="Tu nombre"
-               required>
-
-        <label>Correo electrónico</label>
-        <input type="email"
-               name="correoRegistro"
-               [(ngModel)]="correo"
-               placeholder="Tu correo"
                required>
 
         <label>Contraseña</label>
