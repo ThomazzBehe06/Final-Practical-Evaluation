@@ -6,6 +6,7 @@ import { Noencontradocomponent } from './components/noencontradocomponent/noenco
 import { Nosotroscomponent } from './components/nosotroscomponent/nosotroscomponent';
 import { Logincomponent } from './components/logincomponent/logincomponent';
 import { Usuarioscomponent } from './components/usuarioscomponent/usuarioscomponent';
+import {Listacomponent} from './components/listacomponent/listacomponent';
 
 const routes: Routes = [
   { path: '', redirectTo: 'principal', pathMatch: 'full' },
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: 'nosotros', component: Nosotroscomponent },
   { path: 'login', component: Logincomponent },
   { path: 'usuarios', component: Usuarioscomponent },
-  { path: '**', component: Noencontradocomponent }
+  { path: '**', component: Noencontradocomponent },
+  {path: 'listacomponent', component: Listacomponent},
 ];
 
 @NgModule({
