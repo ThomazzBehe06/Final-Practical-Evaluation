@@ -1,8 +1,8 @@
 export interface Producto {
   id?: number;
-  nombre: string;
+  nombreProducto: string;
+  tipoProducto: 'FRUTA' | 'VERDURA';
   cantidad: number;
   precio: number;
   urlImagen: string;
-  tipo: 'FRUTA' | 'VERDURA';
 }

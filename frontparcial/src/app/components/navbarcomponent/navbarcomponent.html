@@ -18,8 +18,9 @@
           Nosotros
         </a>
       </li>
-      
 
+      <li *ngIf="logueado && rol === 'USER'"><a routerLink="/lista">Productos</a></li>
+      <li *ngIf="logueado && rol === 'ADMIN'"><a routerLink="/admin">Admin</a></li>
 
       <li *ngIf="logueado">
         <a routerLink="/usuarios"

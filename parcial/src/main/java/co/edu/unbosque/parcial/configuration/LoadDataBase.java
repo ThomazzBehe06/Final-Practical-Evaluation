@@ -19,7 +19,7 @@ public class LoadDataBase {
 
 	
 	private static final String ADMIN_USER = "sigma";
-	private static final String ADMIN_PASS = "simga123";
+	private static final String ADMIN_PASS = "sigma123";
 
 	@Bean
 	CommandLineRunner initDatabase(UserRepository userRepo, PasswordEncoder passwordEncoder) {
@@ -27,25 +27,18 @@ public class LoadDataBase {
 			Optional<User> found = userRepo.findByUsername(ADMIN_USER);
 
 			if (found.isPresent()) {
-				User admin = found.get();
-				boolean cambio = false;
-
-				if (admin.getRole() != User.Role.ADMIN) {
-					admin.setRole(User.Role.ADMIN);
-					cambio = true;
-				}
-				
-				if (admin.getPassword() == null || !admin.getPassword().startsWith("$2")) {
-					admin.setPassword(passwordEncoder.encode(admin.getPassword()));
-					cambio = true;
-				}
-
-				if (cambio) {
-					userRepo.save(admin);
-					log.info("Admin existente corregido (rol ADMIN y clave encriptada)");
+				User admin;
+				if (found.isPresent()) {
+				    admin = found.get();
 				} else {
-					log.info("Admin already exists, skipping admin creating ...");
+				    admin = new User();
+				    admin.setUsername(ADMIN_USER);
 				}
+				admin.setRole(User.Role.ADMIN);
+				admin.setPassword(passwordEncoder.encode(ADMIN_PASS));
+				userRepo.save(admin);
+				log.info("Admin listo");
+				
 			} else {
 				User admin = new User(ADMIN_USER, passwordEncoder.encode(ADMIN_PASS));
 				admin.setRole(User.Role.ADMIN);
