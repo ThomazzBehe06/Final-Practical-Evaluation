@@ -7,6 +7,7 @@ import { Nosotroscomponent } from './components/nosotroscomponent/nosotroscompon
 import { Logincomponent } from './components/logincomponent/logincomponent';
 import { Usuarioscomponent } from './components/usuarioscomponent/usuarioscomponent';
 import {Listacomponent} from './components/listacomponent/listacomponent';
+import { Admincomponent } from './components/admincomponent/admincomponent';
 
 const routes: Routes = [
   { path: '', redirectTo: 'principal', pathMatch: 'full' },
@@ -14,8 +15,9 @@ const routes: Routes = [
   { path: 'nosotros', component: Nosotroscomponent },
   { path: 'login', component: Logincomponent },
   { path: 'usuarios', component: Usuarioscomponent },
+  { path: 'lista', component: Listacomponent },
+  { path: 'admin', component: Admincomponent },
   { path: '**', component: Noencontradocomponent },
-  {path: 'listacomponent', component: Listacomponent},
 ];
 
 @NgModule({

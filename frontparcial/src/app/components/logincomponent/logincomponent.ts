@@ -57,7 +57,11 @@ export class Logincomponent {
         this.cdr.markForCheck();
         this.auth.guardarSesion(respuesta);
         this.password = '';
-        this.router.navigate(['/principal']);
+        if (this.auth.obtenerRol() === 'ADMIN') {
+          this.router.navigate(['/admin']);
+        } else {
+          this.router.navigate(['/lista']);
+        }
       },
       error: (e: HttpErrorResponse) => {
         this.cargando = false;

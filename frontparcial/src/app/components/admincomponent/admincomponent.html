@@ -1,1 +1,31 @@
-<p>admincomponent works!</p>
+<h2>Admin</h2>
+<p>{{ mensaje }}</p>
+
+<input [(ngModel)]="nombreProducto" placeholder="Nombre">
+<select [(ngModel)]="tipoProducto">
+  <option value="FRUTA">FRUTA</option>
+  <option value="VERDURA">VERDURA</option>
+</select>
+<input type="number" [(ngModel)]="cantidad" placeholder="Cantidad">
+<input type="number" [(ngModel)]="precio" placeholder="Precio">
+<input [(ngModel)]="urlImagen" placeholder="URL imagen">
+<button (click)="guardar()">{{ id == null ? 'Crear' : 'Guardar' }}</button>
+<button (click)="limpiar()">Limpiar</button>
+
+<table border="1">
+  <tr>
+    <th>ID</th><th>Nombre</th><th>Tipo</th><th>Cantidad</th><th>Precio</th><th>Imagen</th><th></th>
+  </tr>
+  <tr *ngFor="let p of productos">
+    <td>{{ p.id }}</td>
+    <td>{{ p.nombreProducto }}</td>
+    <td>{{ p.tipoProducto }}</td>
+    <td>{{ p.cantidad }}</td>
+    <td>{{ p.precio }}</td>
+    <td>{{ p.urlImagen }}</td>
+    <td>
+      <button (click)="editar(p)">Editar</button>
+      <button (click)="eliminar(p.id!)">Eliminar</button>
+    </td>
+  </tr>
+</table>
