@@ -1,7 +1,7 @@
 import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { provideHttpClient} from '@angular/common/http';
+import { provideHttpClient } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
 
@@ -11,6 +11,7 @@ import { Principalcomponent } from './components/principalcomponent/principalcom
 import { Noencontradocomponent } from './components/noencontradocomponent/noencontradocomponent';
 import { Nosotroscomponent } from './components/nosotroscomponent/nosotroscomponent';
 import { Logincomponent } from './components/logincomponent/logincomponent';
+import { Usuarioscomponent } from './components/usuarioscomponent/usuarioscomponent';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { Logincomponent } from './components/logincomponent/logincomponent';
     Noencontradocomponent,
     Nosotroscomponent,
     Logincomponent,
+    Usuarioscomponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [provideBrowserGlobalErrorListeners(), provideHttpClient()],

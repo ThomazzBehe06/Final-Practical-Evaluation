@@ -1,7 +1,8 @@
-
-import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { ChangeDetectorRef, Component } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/authservice';
+import { LoginResponse } from '../../models/authentication';
 
 @Component({
   selector: 'app-logincomponent',
@@ -14,86 +15,88 @@ export class Logincomponent {
   vista = 'login';
 
   usuario = '';
-  correo = '';
   password = '';
   confirmarPassword = '';
 
   mensaje = '';
   cargando = false;
 
-  private api = 'http://localhost:8080/api/auth';
-
-  constructor(
-    private http: HttpClient,
-    private router: Router
-  ) {}
+  constructor(private auth: AuthService, private router: Router, private cdr: ChangeDetectorRef) {
+  }
 
   cambiarVista(vista: string) {
     this.vista = vista;
     this.mensaje = '';
   }
 
-  registrarse() {
-    if (!this.usuario || !this.correo || !this.password) {
-      this.mensaje = 'Completa todos los campos.';
+  mensajeDeError(e: HttpErrorResponse, mensajePorDefecto: string): string {
+    if (e.status === 0) {
+      return 'No se pudo conectar con el servidor';
+    }
+    if (e.status === 409) {
+      return 'Ese nombre de usuario ya existe';
+    }
+    if (typeof e.error === 'string' && e.error !== '') {
+      return e.error;
+    }
+    return mensajePorDefecto;
+  }
+
+  iniciarSesion() {
+    if (this.usuario.trim() === '' || this.password === '') {
+      this.mensaje = 'Ingresa tus datos.';
       return;
     }
 
+    this.mensaje = '';
+    this.cargando = true;
+
+    this.auth.login({ username: this.usuario.trim(), password: this.password }).subscribe({
+      next: (respuesta: LoginResponse) => {
+        this.cargando = false;
+        this.cdr.markForCheck();
+        this.auth.guardarSesion(respuesta);
+        this.password = '';
+        this.router.navigate(['/principal']);
+      },
+      error: (e: HttpErrorResponse) => {
+        this.cargando = false;
+        if (e.status === 401) {
+          this.mensaje = 'Usuario o contraseña incorrectos.';
+        } else {
+          this.mensaje = this.mensajeDeError(e, 'No se pudo iniciar sesión');
+        }
+        this.cdr.markForCheck();
+      }
+    });
+  }
+
+  registrarse() {
+    if (this.usuario.trim() === '' || this.password === '') {
+      this.mensaje = 'Completa todos los campos.';
+      return;
+    }
     if (this.password !== this.confirmarPassword) {
       this.mensaje = 'Las contraseñas no coinciden.';
       return;
     }
 
+    this.mensaje = '';
     this.cargando = true;
 
-    this.http.post(`${this.api}/registro`, {
-      usuario: this.usuario,
-      correo: this.correo,
-      password: this.password
-    }).subscribe({
+    this.auth.registro({ username: this.usuario.trim(), password: this.password }).subscribe({
       next: () => {
         this.cargando = false;
-        this.mensaje = 'Cuenta creada. Ahora inicia sesión.';
         this.vista = 'login';
         this.password = '';
         this.confirmarPassword = '';
+        this.mensaje = 'Cuenta creada. Ahora inicia sesión.';
+        this.cdr.markForCheck();
       },
-      error: () => {
+      error: (e: HttpErrorResponse) => {
         this.cargando = false;
-        this.mensaje = 'No se pudo completar el registro.';
-      }
-    });
-  }
-
-  iniciarSesion() {
-    if (!this.correo || !this.password) {
-      this.mensaje = 'Ingresa tus datos.';
-      return;
-    }
-
-    this.cargando = true;
-
-    this.http.post<{ token: string }>(
-      `${this.api}/login`,
-      {
-        correo: this.correo,
-        password: this.password
-      }
-    ).subscribe({
-      next: (respuesta) => {
-        this.cargando = false;
-
-        if (!respuesta.token) {
-          this.mensaje = 'No se recibió una sesión válida.';
-          return;
-        }
-
-        sessionStorage.setItem('token', respuesta.token);
-        this.router.navigate(['/principal']);
-      },
-      error: () => {
-        this.cargando = false;
-        this.mensaje = 'Credenciales incorrectas.';
+        this.mensaje = this.mensajeDeError(e, 'No se pudo completar el registro');
+        this.cdr.markForCheck();
       }
     });
   }
