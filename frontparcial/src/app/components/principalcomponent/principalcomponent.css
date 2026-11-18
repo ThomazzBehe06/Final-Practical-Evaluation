@@ -7,7 +7,7 @@
 
 .seccion-portada {
   min-height: 480px;
-  background-color: #f5f5f5;
+  background-color: #FAFFF2;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -20,7 +20,7 @@
 }
 
 .etiqueta-portada {
-  color: #c49b35;
+  color: #69A345;
   font-size: 13px;
   font-weight: bold;
   letter-spacing: 3px;
@@ -33,7 +33,7 @@
 }
 
 .contenido-portada h1 span {
-  color: #c49b35;
+  color: #69A345;
 }
 
 .contenido-portada p {
@@ -43,19 +43,7 @@
   margin-bottom: 30px;
 }
 
-.boton-portada {
-  display: inline-block;
-  padding: 13px 28px;
-  background-color: #c49b35;
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
-  transition: background-color 0.3s;
-}
 
-.boton-portada:hover {
-  background-color: #a98125;
-}
 
 .seccion-informacion {
   padding: 75px 20px;
@@ -69,7 +57,7 @@
 }
 
 .encabezado-seccion span {
-  color: #c49b35;
+  color: #BEF09C;
   font-size: 13px;
   font-weight: bold;
   letter-spacing: 2px;
@@ -106,8 +94,8 @@
 .icono-tarjeta {
   width: 50px;
   height: 50px;
-  background-color: #f8f0dc;
-  color: #c49b35;
+  background-color: #BEF09C;
+  color: #0aad30  ;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -129,7 +117,7 @@
 .tarjeta-principal a {
   display: inline-block;
   margin-top: 12px;
-  color: #b28b2c;
+  color: #BEF09C;
   text-decoration: none;
   font-weight: bold;
   font-size: 14px;
@@ -157,7 +145,7 @@
 .boton-final {
   display: inline-block;
   padding: 12px 25px;
-  background-color: #c49b35;
+  background-color: #BEF09C;
   color: white;
   text-decoration: none;
   border-radius: 5px;
@@ -191,4 +179,8 @@
     font-size: 25px;
   }
 
+}
+.galeria img {
+  width: 100px;
+  height: 80px;
 }
