@@ -41,7 +41,6 @@ export class Usuarioscomponent implements OnInit {
 
   manejarError(e: HttpErrorResponse, mensajePorDefecto: string) {
     if (e.status === 401) {
-      // token vencido o inválido
       this.auth.cerrarSesion();
       this.router.navigate(['/login']);
       return;
