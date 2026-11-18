@@ -12,6 +12,10 @@ import { Noencontradocomponent } from './components/noencontradocomponent/noenco
 import { Nosotroscomponent } from './components/nosotroscomponent/nosotroscomponent';
 import { Logincomponent } from './components/logincomponent/logincomponent';
 import { Usuarioscomponent } from './components/usuarioscomponent/usuarioscomponent';
+import { Listacomponent } from './components/listacomponent/listacomponent';
+import { Servicecomponent } from './components/servicecomponent/servicecomponent';
+import { Admincomponent } from './components/admincomponent/admincomponent';
+import { Productocomponent } from './components/productocomponent/productocomponent';
 
 @NgModule({
   declarations: [
@@ -23,6 +27,10 @@ import { Usuarioscomponent } from './components/usuarioscomponent/usuarioscompon
     Nosotroscomponent,
     Logincomponent,
     Usuarioscomponent,
+    Listacomponent,
+    Servicecomponent,
+    Admincomponent,
+    Productocomponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [provideBrowserGlobalErrorListeners(), provideHttpClient()],
