@@ -1,7 +1,7 @@
-  
+
 .barra-navegacion {
   width: 100%;
-  background-color: #ffffff;
+  background-color: #ECF5E6;
   border-bottom: 1px solid #eeeeee;
   padding: 15px 0;
   font-family: Arial, sans-serif;
@@ -34,29 +34,26 @@
 
 .enlaces-navbar a {
   text-decoration: none;
-  color: #555555;
+  color: green;
   font-size: 15px;
   transition: color 0.3s;
 }
 
 .enlaces-navbar a:hover,
 .enlaces-navbar .enlace-activo {
-  color: #c49b35;
+  color: green;
 }
 
-.boton-navbar {
+
+
+.boton-iniciar {
   display: inline-block;
-  padding: 10px 20px;
-  background-color: #c49b35;
+  padding: 13px 28px;
+  background-color: #BEF09C;
   color: white;
   text-decoration: none;
   border-radius: 5px;
-  font-size: 14px;
   transition: background-color 0.3s;
-}
-
-.boton-navbar:hover {
-  background-color: #a98125;
 }
 
 @media (max-width: 768px) {

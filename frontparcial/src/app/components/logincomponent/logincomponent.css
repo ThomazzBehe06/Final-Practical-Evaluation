@@ -134,7 +134,7 @@ button {
   width: 100%;
   margin-top: 25px;
   padding: 13px;
-  background-color: #c49b35;
+  background-color: #0aad30;
   color: #ffffff;
   border: none;
   border-radius: 5px;
@@ -160,7 +160,7 @@ button:disabled {
 }
 
 .cambiar a {
-  color: #b28b2c;
+  color: #0aad30;
   font-weight: bold;
   cursor: pointer;
   text-decoration: none;
