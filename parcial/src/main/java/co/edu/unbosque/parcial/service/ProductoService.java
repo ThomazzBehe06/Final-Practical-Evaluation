@@ -3,9 +3,11 @@ package co.edu.unbosque.parcial.service;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import co.edu.unbosque.parcial.model.Producto;
 import co.edu.unbosque.parcial.repository.ProductoRepository;
 
+@Service
 public class ProductoService {
 	@Autowired
 	private ProductoRepository prodRepo;
@@ -44,8 +46,7 @@ public class ProductoService {
 			temp.setUrlImagen(nuevoDato.getUrlImagen());
 			prodRepo.save(temp);
 			return 0;
-		} else if (encontrado.isEmpty() && nuevoDato != null) {
-			prodRepo.save(nuevoDato);
+		} else if (encontrado.isEmpty()) {
 			return 1;
 		} else {
 			return 2;
@@ -56,8 +57,30 @@ public class ProductoService {
 		return prodRepo.existsById(id);
 	}
 
-	public Object findById(Long id) {
-		return null;
+	public Optional<Producto> findById(Long id) {
+		return prodRepo.findById(id);
+	}
+
+	public int comprar(long id, int cantidadComprar) {
+		Optional<Producto> encontrado = prodRepo.findById(id);
+		if (encontrado.isPresent()) {
+			Producto temp = encontrado.get();
+			if (cantidadComprar <= 0) {
+				return 3;
+			}
+
+			if (temp.getCantidad() >= cantidadComprar) {
+				temp.setCantidad(temp.getCantidad() - cantidadComprar);
+				prodRepo.save(temp);
+				return 0;
+
+			} else {
+				return 2;
+			}
+
+		} else {
+			return 1;
+		}
 	}
 
 }

@@ -1,19 +1,19 @@
 package co.edu.unbosque.parcial.controller;
 
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 import co.edu.unbosque.parcial.model.Producto;
 import co.edu.unbosque.parcial.service.ProductoService;
 
+@RestController
+@RequestMapping("/producto")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ProductoController {
+
 	@Autowired
 	private ProductoService productoServ;
 
@@ -32,9 +32,8 @@ public class ProductoController {
 		if (resultado == 0) {
 			return ResponseEntity.ok("Producto actualizado correctamente");
 		} else if (resultado == 1) {
-			return ResponseEntity.status(HttpStatus.CREATED).body("El ID no existía; se creó un nuevo registro");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encontró un producto con ese ID");
 		}
-
 		return ResponseEntity.badRequest().body("Datos inválidos");
 	}
 
@@ -58,4 +57,27 @@ public class ProductoController {
 		return new ResponseEntity<>(productoServ.mostrarTodo(), HttpStatus.OK);
 	}
 
+	@GetMapping("/buscar/{id}")
+	public ResponseEntity<Producto> buscarPorId(@PathVariable("id") Long id) {
+		Optional<Producto> encontrado = productoServ.findById(id);
+		if (encontrado.isPresent()) {
+			return new ResponseEntity<>(encontrado.get(), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+
+	@PostMapping("/comprar/{id}")
+	public ResponseEntity<String> comprar(@PathVariable("id") long id, @RequestParam("cantidad") int cantidadComprar) {
+		int resultado = productoServ.comprar(id, cantidadComprar);
+		if (resultado == 0) {
+			return ResponseEntity.ok("Compra realizada correctamente");
+		} else if (resultado == 1) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Producto no encontrado");
+		} else if (resultado == 2) {
+			return ResponseEntity.badRequest().body("No hay suficiente cantidad disponible");
+		} else {
+			return ResponseEntity.badRequest().body("La cantidad debe ser mayor a cero");
+		}
+	}
 }
