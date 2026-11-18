@@ -1,11 +1,12 @@
 package co.edu.unbosque.parcial.dto;
 
 import java.util.Objects;
+import co.edu.unbosque.parcial.model.Producto.TipoProducto;
 
 public class ProductoDTO {
-
 	private Long id;
-	private String role;
+	private String nombreProducto;
+	private TipoProducto tipoProducto;
 	private int cantidad;
 	private double precio;
 	private String urlImagen;
@@ -14,9 +15,11 @@ public class ProductoDTO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ProductoDTO(String role, int cantidad, double precio, String urlImagen) {
+	public ProductoDTO(String nombreProducto, TipoProducto tipoProducto, int cantidad, double precio,
+			String urlImagen) {
 		super();
-		this.role = role;
+		this.nombreProducto = nombreProducto;
+		this.tipoProducto = tipoProducto;
 		this.cantidad = cantidad;
 		this.precio = precio;
 		this.urlImagen = urlImagen;
@@ -30,12 +33,20 @@ public class ProductoDTO {
 		this.id = id;
 	}
 
-	public String getRole() {
-		return role;
+	public String getNombreProducto() {
+		return nombreProducto;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
+	public void setNombreProducto(String nombreProducto) {
+		this.nombreProducto = nombreProducto;
+	}
+
+	public TipoProducto getTipoProducto() {
+		return tipoProducto;
+	}
+
+	public void setTipoProducto(TipoProducto tipoProducto) {
+		this.tipoProducto = tipoProducto;
 	}
 
 	public int getCantidad() {
@@ -64,13 +75,14 @@ public class ProductoDTO {
 
 	@Override
 	public String toString() {
-		return "ProductoDTO [id=" + id + ", role=" + role + ", cantidad=" + cantidad + ", precio=" + precio
-				+ ", urlImagen=" + urlImagen + "]";
+		return "ProductoDTO [id=" + id + ", nombreProducto=" + nombreProducto + ", tipoProducto=" + tipoProducto
+				+ ", cantidad=" + cantidad + ", precio=" + precio + ", urlImagen=" + urlImagen + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(Integer.valueOf(cantidad), id, Double.valueOf(precio), role, urlImagen);
+		return Objects.hash(Integer.valueOf(cantidad), id, nombreProducto, Double.valueOf(precio), tipoProducto,
+				urlImagen);
 	}
 
 	@Override
@@ -83,8 +95,9 @@ public class ProductoDTO {
 			return false;
 		ProductoDTO other = (ProductoDTO) obj;
 		return cantidad == other.cantidad && Objects.equals(id, other.id)
+				&& Objects.equals(nombreProducto, other.nombreProducto)
 				&& Double.doubleToLongBits(precio) == Double.doubleToLongBits(other.precio)
-				&& Objects.equals(role, other.role) && Objects.equals(urlImagen, other.urlImagen);
+				&& tipoProducto == other.tipoProducto && Objects.equals(urlImagen, other.urlImagen);
 	}
 
 }
