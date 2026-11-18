@@ -1,0 +1,84 @@
+.pie-pagina {
+  width: 100%;
+  background-color: #222222;
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+}
+
+.contenedor-footer {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 45px 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.informacion-footer,
+.enlaces-footer,
+.contacto-footer {
+  flex: 1;
+}
+
+.informacion-footer h3 {
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+.informacion-footer p {
+  color: #bbbbbb;
+  line-height: 1.6;
+  max-width: 300px;
+}
+
+.enlaces-footer h4,
+.contacto-footer h4 {
+  font-size: 17px;
+  margin-bottom: 18px;
+}
+
+.enlaces-footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.enlaces-footer li {
+  margin-bottom: 12px;
+}
+
+.enlaces-footer a {
+  text-decoration: none;
+  color: #bbbbbb;
+  transition: color 0.3s;
+}
+
+.enlaces-footer a:hover {
+  color: #c49b35;
+}
+
+.contacto-footer p {
+  color: #bbbbbb;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+.derechos-footer {
+  border-top: 1px solid #444444;
+  text-align: center;
+  padding: 18px 10px;
+}
+
+.derechos-footer p {
+  color: #aaaaaa;
+  font-size: 13px;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .contenedor-footer {
+    flex-direction: column;
+    gap: 30px;
+  }
+}

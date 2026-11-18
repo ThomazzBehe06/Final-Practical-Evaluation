@@ -1,0 +1,122 @@
+<main class="contenedor-login">
+
+  <section class="presentacion">
+
+    <div class="espacio-foto">
+      <img src="assets/portada.jpg"
+           alt="Imagen de presentación">
+    </div>
+
+    <h1>Bienvenido a nuestra página</h1>
+    <p>
+      Regístrate para disfrutar de todo
+      nuestro contenido.
+    </p>
+
+    <div class="galeria">
+      <img src="assets/foto1.jpg" alt="Foto 1">
+      <img src="assets/foto2.jpg" alt="Foto 2">
+      <img src="assets/foto3.jpg" alt="Foto 3">
+    </div>
+
+  </section>
+
+  <section class="formulario">
+
+    <div class="caja-login">
+
+      <h2>
+        {{ vista === 'login'
+        ? 'Iniciar sesión'
+        : 'Crear cuenta' }}
+      </h2>
+
+      <p class="subtitulo">
+        Debes tener una cuenta para entrar.
+      </p>
+
+      <form *ngIf="vista === 'login'"
+            (ngSubmit)="iniciarSesion()">
+
+        <label>Correo electrónico</label>
+        <input type="email"
+               name="correoLogin"
+               [(ngModel)]="correo"
+               placeholder="Ingresa tu correo"
+               required>
+
+        <label>Contraseña</label>
+        <input type="password"
+               name="passwordLogin"
+               [(ngModel)]="password"
+               placeholder="Ingresa tu contraseña"
+               required>
+
+        <button type="submit"
+                [disabled]="cargando">
+          Iniciar sesión
+        </button>
+
+        <p class="cambiar">
+          ¿No tienes cuenta?
+          <a (click)="cambiarVista('registro')">
+            Regístrate aquí
+          </a>
+        </p>
+
+      </form>
+
+      <form *ngIf="vista === 'registro'"
+            (ngSubmit)="registrarse()">
+
+        <label>Nombre de usuario</label>
+        <input type="text"
+               name="usuario"
+               [(ngModel)]="usuario"
+               placeholder="Tu nombre"
+               required>
+
+        <label>Correo electrónico</label>
+        <input type="email"
+               name="correoRegistro"
+               [(ngModel)]="correo"
+               placeholder="Tu correo"
+               required>
+
+        <label>Contraseña</label>
+        <input type="password"
+               name="passwordRegistro"
+               [(ngModel)]="password"
+               placeholder="Crea una contraseña"
+               required>
+
+        <label>Confirmar contraseña</label>
+        <input type="password"
+               name="confirmar"
+               [(ngModel)]="confirmarPassword"
+               placeholder="Repite tu contraseña"
+               required>
+
+        <button type="submit"
+                [disabled]="cargando">
+          Crear cuenta
+        </button>
+
+        <p class="cambiar">
+          ¿Ya tienes cuenta?
+          <a (click)="cambiarVista('login')">
+            Inicia sesión
+          </a>
+        </p>
+
+      </form>
+
+      <p class="mensaje" *ngIf="mensaje">
+        {{ mensaje }}
+      </p>
+
+    </div>
+
+  </section>
+
+</main>
